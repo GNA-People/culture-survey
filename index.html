@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GNA Culture Survey 2026</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: single column, max 960px, section accordions; Playio BI tokens (Blue #4488FF, Reward #0DE2E3, Black #1A1B1C, White) */
+:root{
+  --brand:#4488FF; --brand-ink:#2E6BE0; --brand-soft:#E8F1FF; --reward:#0DE2E3; --reward-soft:#DFF9F9; --warm:#FFF4E6;
+  --bg:#F3F7FF; --surface:#FFFFFF; --ink:#1A1B1C; --muted:#667085; --border:#E3E8F0; --border-strong:#C9D3E2;
+  --danger:#D93F3F; --danger-soft:#FDECEC; --free-ink:#0A7D7E;
+  --font:"Spoqa Han Sans Neo","Pretendard","Noto Sans KR",-apple-system,"Apple SD Gothic Neo",system-ui,sans-serif;
+  --radius-card:22px; --radius-control:14px; --content-max:960px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --brand:#5C97FF; --brand-ink:#8AB4FF; --brand-soft:#17284A; --reward-soft:#0E3A3B; --warm:#2A2418; --bg:#111214; --surface:#1A1B1C; --ink:#F2F4F8; --muted:#9AA4B5; --border:#2A2D33; --border-strong:#3C4150; --danger:#FF6B6B; --danger-soft:#3A1F1F; --free-ink:#5EE3E4; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --brand:#5C97FF; --brand-ink:#8AB4FF; --brand-soft:#17284A; --reward-soft:#0E3A3B; --warm:#2A2418; --bg:#111214; --surface:#1A1B1C; --ink:#F2F4F8; --muted:#9AA4B5; --border:#2A2D33; --border-strong:#3C4150; --danger:#FF6B6B; --danger-soft:#3A1F1F; --free-ink:#5EE3E4; color-scheme:dark }
+
+html{color-scheme:light}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+a{color:var(--brand-ink)}
+button{font:inherit;color:inherit}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.25}
+p{margin:0}
+
+.wrap{max-width:var(--content-max);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* header */
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--border)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.wordmark{font-weight:900;font-size:20px;letter-spacing:-.02em;color:var(--brand)}
+.hdr-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.progress{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.progress b{color:var(--ink);font-weight:700}
+.bar{width:96px;height:6px;border-radius:99px;background:var(--border);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--brand);transition:width .2s}
+@media (max-width:480px){.hdr-eyebrow{display:none}.bar{width:56px}}
+
+/* hero */
+.hero{padding-block:40px 24px;position:relative}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+.hero h1{font-size:clamp(28px,5vw,40px);font-weight:900;letter-spacing:-.02em;margin-top:10px}
+.hero .sub{margin-top:12px;font-size:17px;color:var(--muted);max-width:40em}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;background:var(--surface);border:1.5px solid var(--brand-soft);color:var(--brand-ink);font-size:14px;font-weight:700}
+
+/* intro blocks */
+.intro{display:grid;gap:20px;padding-block:8px 32px}
+.block h2{font-size:18px;font-weight:700;margin-bottom:10px}
+.block p+p{margin-top:10px}
+.block p{color:var(--ink);max-width:44em}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+@media (max-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:420px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:16px;min-width:0}
+.step .n{width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand-ink);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.step h3{font-size:15px;font-weight:700;margin-top:10px}
+.step p{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+.note{font-size:13.5px;color:var(--muted);margin-top:12px}
+.guide{background:var(--warm);border-radius:var(--radius-card);padding:18px 20px}
+.guide ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.guide li{font-size:15px;font-weight:500;display:flex;gap:10px}
+.guide li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand);flex:none;margin-top:10px}
+.guide code{font:inherit;background:var(--brand-soft);color:var(--brand-ink);padding:1px 6px;border-radius:6px}
+
+/* survey */
+.survey{display:grid;gap:14px;padding-block:0 24px}
+.sec{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);overflow:hidden}
+.sec-h{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:0;padding:18px 20px;cursor:pointer}
+.sec-h:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.sec-num{width:40px;height:40px;border-radius:14px;background:var(--brand-soft);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;letter-spacing:.04em;flex:none;font-variant-numeric:tabular-nums}
+.sec-t{flex:1;min-width:0}
+.sec-t h2{font-size:18px;font-weight:700}
+.sec-t p{font-size:13.5px;color:var(--muted);margin-top:2px}
+.sec-count{font-size:13px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.chev{width:20px;height:20px;flex:none;color:var(--muted);transition:transform .2s}
+.sec.open .chev{transform:rotate(180deg)}
+.sec-b{display:none;border-top:1px solid var(--border);padding:6px 20px 20px}
+.sec.open .sec-b{display:block}
+.sec-intro{font-size:15px;color:var(--muted);padding-block:14px 6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);padding:10px 12px;background:var(--bg);border-radius:10px;margin-block:8px 4px;font-variant-numeric:tabular-nums}
+.legend b{color:var(--ink);font-weight:700}
+
+.q{padding-block:18px;border-bottom:1px solid var(--border)}
+.q:last-child{border-bottom:0}
+.q.err{background:var(--danger-soft);margin-inline:-20px;padding-inline:20px;border-radius:0}
+.q-t{display:flex;gap:10px;align-items:baseline}
+.q-n{font-size:12px;font-weight:700;color:var(--brand);letter-spacing:.04em;flex:none;font-variant-numeric:tabular-nums}
+.q-tag{font-size:11.5px;font-weight:700;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:1px 8px;border-radius:99px;flex:none;white-space:nowrap}
+.q-tag.req{color:var(--brand-ink);background:var(--brand-soft);border-color:transparent}
+.q-tag.free{color:var(--free-ink);background:var(--reward-soft);border-color:transparent}
+.divider{height:1px;background:var(--border-strong);margin-block:28px;opacity:.9}
+.q.summary{padding-block:20px}
+.q-text{font-size:16px;font-weight:500;line-height:1.5}
+.q-hint{font-size:13.5px;color:var(--muted);margin-top:4px}
+.q-err{display:none;font-size:13px;color:var(--danger);margin-top:8px;font-weight:500}
+.q.err .q-err{display:block}
+
+/* scale control */
+.scale{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.seg{display:flex;gap:6px}
+.seg label{position:relative}
+.seg input,.na input,.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:flex;align-items:center;justify-content:center;width:48px;height:46px;border:1.5px solid var(--border-strong);border-radius:14px;font-weight:700;font-size:15px;cursor:pointer;background:var(--surface);transition:background .15s,border-color .15s;user-select:none}
+.seg input:checked+span{background:var(--brand);border-color:var(--brand);color:#fff}
+.seg input:focus-visible+span,.na input:focus-visible+span,.opt input:focus-visible+span{outline:2px solid var(--brand);outline-offset:2px}
+.na span{display:flex;align-items:center;height:44px;padding:0 14px;border:1px dashed var(--border-strong);border-radius:var(--radius-control);font-size:14px;color:var(--muted);cursor:pointer;background:var(--surface);user-select:none}
+.na input:checked+span{border-style:solid;border-color:var(--ink);color:var(--ink);background:var(--bg)}
+.scale-ends{display:none}
+@media (max-width:420px){.seg span{width:44px}}
+
+/* single choice */
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+@media (max-width:600px){.opts{grid-template-columns:1fr}}
+.opt{position:relative;min-width:0}
+.opt span{display:flex;align-items:center;gap:10px;min-height:44px;padding:9px 14px;border:1px solid var(--border-strong);border-radius:var(--radius-control);font-size:14.5px;cursor:pointer;background:var(--surface);user-select:none}
+.opt span::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid var(--border-strong);flex:none;box-sizing:border-box}
+.opt input:checked+span{border-color:var(--brand);background:var(--brand-soft);color:var(--brand-ink);font-weight:500}
+.opt input:checked+span::before{border:5px solid var(--brand);background:#fff}
+
+/* textarea & collapsible free text */
+textarea{width:100%;min-height:110px;resize:vertical;padding:12px 14px;border:1px solid var(--border-strong);border-radius:var(--radius-control);background:var(--surface);color:var(--ink);font:inherit;font-size:15px;line-height:1.55}
+textarea:focus{outline:2px solid var(--brand);outline-offset:0;border-color:var(--brand)}
+.count{font-size:12px;color:var(--muted);text-align:right;margin-top:4px;font-variant-numeric:tabular-nums}
+details.ft{border:1px solid var(--border);border-radius:12px;margin-top:10px;background:var(--bg)}
+details.ft summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:14.5px;font-weight:500;display:flex;align-items:center;gap:8px;color:var(--ink)}
+details.ft summary .q-tag{margin-left:auto}
+details.ft summary::-webkit-details-marker{display:none}
+details.ft summary::before{content:"+";font-weight:700;width:18px;text-align:center}
+details.ft[open] summary::before{content:"–"}
+details.ft .ft-b{padding:0 14px 14px}
+
+/* footer / submit */
+.submit{padding-block:8px 48px}
+.submit-box{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);padding:20px}
+.submit-box p{font-size:13.5px;color:var(--muted);flex:1;min-width:220px}
+.btn{height:48px;padding:0 24px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-weight:700;font-size:16px;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--brand-ink)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn:disabled{opacity:.6;cursor:default}
+.btn.ghost{background:var(--surface);color:var(--brand-ink);border:1.5px solid var(--border-strong)}
+.btn.ghost:hover{background:var(--brand-soft)}
+.form-err{display:none;margin-bottom:12px;padding:12px 16px;border-radius:12px;background:var(--danger-soft);color:var(--danger);font-size:14px;font-weight:500}
+.form-err.show{display:block}
+.preview-note{margin-top:14px;font-size:12.5px;color:var(--muted);text-align:center}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-left,0px));background:rgba(10,14,24,.55)}
+.modal.show{display:flex}
+.modal-card{width:100%;max-width:520px;background:var(--surface);color:var(--ink);border-radius:22px;padding:30px 28px 24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal-x{position:absolute;top:12px;right:12px;width:40px;height:40px;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center}
+.modal-x:hover{background:var(--bg)}
+.modal-x:focus-visible{outline:2px solid var(--brand)}
+.modal-ic{width:48px;height:48px;border-radius:14px;background:var(--brand-soft);color:var(--brand-ink);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.modal h2{font-size:22px;font-weight:900;letter-spacing:-.01em}
+.modal h2 em{font-style:normal;color:var(--brand)}
+.modal p{margin-top:10px;font-size:15px;color:var(--ink)}
+.modal p.ask{color:var(--muted);font-weight:500}
+.modal-btns{display:flex;gap:10px;margin-top:22px;justify-content:flex-end}
+.modal-btns .btn{height:46px;padding:0 20px;font-size:15px}
+@media (max-width:480px){.modal-btns{flex-direction:column-reverse}.modal-btns .btn{width:100%}}
+
+/* done */
+.done{display:none;padding-block:80px 100px;text-align:center}
+.done .mark{width:64px;height:64px;border-radius:50%;background:var(--brand);color:#fff;display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px}
+.done h1{font-size:28px;font-weight:900;letter-spacing:-.02em}
+.done p{margin:14px auto 0;max-width:36em;color:var(--muted);font-size:16px}
+body.submitted .page{display:none}
+body.submitted .done{display:block}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <div class="brand">
+      <span class="wordmark">GNA</span>
+      <span class="hdr-eyebrow">Culture Survey 2026</span>
+    </div>
+    <div class="progress" aria-live="polite">
+      <span>기본 질문 <b id="pDone">0</b>/16</span>
+      <span class="bar" aria-hidden="true"><i id="pBar"></i></span>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero wrap">
+    <div class="eyebrow">GNA Culture Survey 2026</div>
+    <h1>우리가 함께 만드는 GNA다운 문화</h1>
+    <p class="sub">좋았던 점과 바뀌었으면 하는 점, 두 가지만 들려주세요.</p>
+    <div class="meta">
+      <span class="chip">약 5분</span>
+      <span class="chip">익명 응답</span>
+      <span class="chip">자유 의견 선택</span>
+    </div>
+  </section>
+
+  <section class="intro wrap">
+    <div class="block">
+      <h2>왜 진행하나요?</h2>
+      <p>2024년, 크루들과 함께 <strong>용기·오너십·솔직</strong>이라는 핵심가치와 일하는 방식을 정했습니다.</p>
+      <p>그 사이 새로운 크루가 합류하고 일하는 방식도 달라졌어요. 지금의 GNA에 잘 맞는지 함께 돌아보려고 합니다.</p>
+    </div>
+
+    <div class="block">
+      <h2>여러분의 의견은 이렇게 이어져요</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>지금의 모습 확인</h3><p>잘 지켜지는 문화와 아쉬운 부분을 살펴봐요.</p></div>
+        <div class="step"><div class="n">2</div><h3>핵심가치 리뉴얼</h3><p>의견을 반영하여 핵심가치 리뉴얼 작업을 진행해요.</p></div>
+        <div class="step"><div class="n">3</div><h3>일하는 방식 개선</h3><p>소통·회의·피드백 등 바꿀 과제를 정하고 실행해요.</p></div>
+        <div class="step"><div class="n">4</div><h3>결과 공유</h3><p>서베이 결과와 진행 상황을 다시 공유드릴게요.</p></div>
+      </div>
+    </div>
+
+    <div class="guide">
+      <ul>
+        <li>개인이나 팀을 평가하는 조사가 아니에요. 편하게 솔직하게 답해주세요.</li>
+        <li>내 팀만이 아니라 <strong>GNA 전체</strong>의 모습을 떠올려 주세요.</li>
+        <li>경험이 없는 질문은 <code>판단하기 어려워요</code>를 선택해 주세요. 자유 의견은 <code>자유작성</code>으로 표시되어 있어요.</li>
+      </ul>
+    </div>
+  </section>
+
+  <form class="survey wrap" id="survey" novalidate>
+
+    <div class="sec open" id="sec0">
+      <div class="sec-b" style="border-top:0;padding-top:0">
+        <div class="q" id="q1">
+          <div class="q-t"><span class="q-n">Q1</span><span class="q-tag">선택</span><span class="q-text">GNA에서 얼마나 근무하셨나요?</span></div>
+          <div class="q-hint">근속기간에 따라 조직문화를 어떻게 경험하는지 살펴보기 위한 질문이에요.</div>
+          <div class="opts" data-single="q1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 01 -->
+    <div class="sec open" id="sec1">
+      <button type="button" class="sec-h" aria-expanded="true" aria-controls="sec1b">
+        <span class="sec-num">01</span>
+        <span class="sec-t"><h2>GNA의 핵심가치</h2><p>6개 진단 질문 + 2개 선택 질문 · 자유작성 1개</p></span>
+        <span class="sec-count" id="c1">0/8</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="sec-b" id="sec1b">
+        <p class="sec-intro"><strong>용기·오너십·솔직</strong>이 실제로 어떻게 실천되고 있는지 살펴봐요.</p>
+        <div class="legend"><span><b>1</b> 전혀 그렇지 않다</span><span><b>2</b> 그렇지 않은 편이다</span><span><b>3</b> 보통이다</span><span><b>4</b> 그런 편이다</span><span><b>5</b> 매우 그렇다</span></div>
+        <div id="s1scale"></div>
+        <div class="divider" role="separator"></div>
+        <div class="q summary" id="q8">
+          <div class="q-t"><span class="q-n">Q8</span><span class="q-tag req">필수</span><span class="q-text">현재 GNA에서 가장 잘 실천되고 있다고 느끼는 핵심가치는 무엇인가요?</span></div>
+          <div class="opts" data-single="q8"></div>
+          <div class="q-err">하나를 선택해 주세요.</div>
+        </div>
+        <div class="q summary" id="q9">
+          <div class="q-t"><span class="q-n">Q9</span><span class="q-tag req">필수</span><span class="q-text">앞으로 더 보완했으면 하는 핵심가치는 무엇인가요?</span></div>
+          <div class="opts" data-single="q9"></div>
+          <div class="q-err">하나를 선택해 주세요.</div>
+        </div>
+        <div class="q" id="q10">
+          <details class="ft"><summary>Q10. Q8~Q9에서 그렇게 선택한 이유는 무엇인가요? <span class="q-tag free">자유작성</span></summary>
+            <div class="ft-b"><p class="q-hint" style="margin-bottom:8px">잘 실천된다고 생각한 이유와 보완이 필요하다고 생각한 이유를 모두 적어주셔도 좋아요. 직접 경험한 상황이 있다면 함께 들려주세요.</p>
+            <textarea id="q10t" name="q10" maxlength="2000" placeholder="원하는 내용을 남겨주세요"></textarea><div class="count"><span data-count="q10t">0</span>/2000</div></div></details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="sec" id="sec2">
+      <button type="button" class="sec-h" aria-expanded="false" aria-controls="sec2b">
+        <span class="sec-num">02</span>
+        <span class="sec-t"><h2>함께 일하는 방식</h2><p>6개 진단 질문 + 2개 선택 질문 · 자유작성 1개</p></span>
+        <span class="sec-count" id="c2">0/8</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="sec-b" id="sec2b">
+        <p class="sec-intro">소통부터 업무 마무리까지, 함께 일하며 경험한 모습을 떠올려 주세요.</p>
+        <div class="legend"><span><b>1</b> 전혀 그렇지 않다</span><span><b>2</b> 그렇지 않은 편이다</span><span><b>3</b> 보통이다</span><span><b>4</b> 그런 편이다</span><span><b>5</b> 매우 그렇다</span></div>
+        <div id="s2scale"></div>
+        <div class="divider" role="separator"></div>
+        <div class="q summary" id="q17">
+          <div class="q-t"><span class="q-n">Q17</span><span class="q-tag req">필수</span><span class="q-text">현재 GNA에서 가장 잘 작동한다고 느끼는 일하는 방식은 무엇인가요?</span></div>
+          <div class="opts" data-single="q17"></div>
+          <div class="q-err">하나를 선택해 주세요.</div>
+        </div>
+        <div class="q summary" id="q18">
+          <div class="q-t"><span class="q-n">Q18</span><span class="q-tag req">필수</span><span class="q-text">앞으로 가장 먼저 개선했으면 하는 일하는 방식은 무엇인가요?</span></div>
+          <div class="opts" data-single="q18"></div>
+          <div class="q-err">하나를 선택해 주세요.</div>
+        </div>
+        <div class="q" id="q19">
+          <details class="ft"><summary>Q19. Q17~Q18에서 그렇게 선택한 이유는 무엇인가요? <span class="q-tag free">자유작성</span></summary>
+            <div class="ft-b"><p class="q-hint" style="margin-bottom:8px">잘 작동한다고 느낀 이유와 개선이 필요하다고 느낀 이유를 모두 알려주셔도 좋아요. 어떻게 바뀌면 좋을지도 자유롭게 적어주세요.</p>
+            <textarea id="q19t" name="q19" maxlength="2000" placeholder="원하는 내용을 남겨주세요"></textarea><div class="count"><span data-count="q19t">0</span>/2000</div></div></details>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="sec" id="sec3">
+      <button type="button" class="sec-h" aria-expanded="false" aria-controls="sec3b">
+        <span class="sec-num">03</span>
+        <span class="sec-t"><h2>크루의 자유 의견</h2><p>자유작성 1개</p></span>
+        <span class="sec-count" id="c3">0/1</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="sec-b" id="sec3b">
+        <p class="sec-intro">마지막으로, GNA에 더 전하고 싶은 이야기가 있나요? 앞선 질문에서 다루지 못한 내용도 자유롭게 남겨주세요.</p>
+        <div class="q" id="q20" style="border-bottom:0;padding-top:4px">
+          <details class="ft" id="q20d"><summary>Q20. 더 전하고 싶은 말이 있나요? <span class="q-tag free">자유작성</span></summary>
+            <div class="ft-b"><p class="q-hint" style="margin-bottom:8px">앞으로도 지켜줬으면 하는 점, 개선이 필요한 점, GNA다운 핵심가치나 일하는 방식에 대한 제안 등 어떤 이야기든 좋아요.</p>
+            <textarea id="q20t" name="q20" maxlength="2000" placeholder="하고 싶은 이야기가 있다면 자유롭게 남겨주세요."></textarea><div class="count"><span data-count="q20t">0</span>/2000</div></div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit">
+      <div class="form-err" id="formErr"></div>
+      <div class="submit-box">
+        <p>필수 질문 16개에 답하면 제출할 수 있어요. 응답은 익명이며 평가에 사용하지 않아요.</p>
+        <button type="submit" class="btn" id="submitBtn">응답 제출하기</button>
+      </div>
+          </div>
+  </form>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-card">
+    <button type="button" class="modal-x" id="modalX" aria-label="닫기"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <div class="modal-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 016.5 3h11A2.5 2.5 0 0120 5.5v8a2.5 2.5 0 01-2.5 2.5H9l-4.2 3.4A.5.5 0 014 19V5.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 7.6c-.9-1.2-2.8-1-3.3.4-.4 1.2.5 2.2 1.6 3.1l1.7 1.4 1.7-1.4c1.1-.9 2-1.9 1.6-3.1-.5-1.4-2.4-1.6-3.3-.4z" fill="currentColor"/></svg></div>
+    <h2 id="modalTitle">제출하기 전에 <em>잠깐!</em></h2>
+    <p>크루 여러분의 의견 하나하나가 더 나은 GNA를 만드는 데 큰 도움이 됩니다.</p>
+    <p class="ask">혹시 더 전하고 싶은 이야기가 있으신가요?</p>
+    <div class="modal-btns">
+      <button type="button" class="btn ghost" id="modalWrite">의견 작성하기</button>
+      <button type="button" class="btn" id="modalGo">그대로 제출하기</button>
+    </div>
+  </div>
+</div>
+
+<section class="done wrap" aria-live="polite">
+  <div class="mark"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <h1>소중한 의견 감사합니다!</h1>
+  <p>들려주신 이야기로 GNA다운 문화를 더 선명하게 정리할게요. 결과와 다음 계획도 꼭 다시 공유드릴게요.</p>
+</section>
+
+<script>
+(function(){
+  // ▼ Apps Script 웹앱 배포 URL (README 참고). 비어 있으면 저장 없이 완료 화면만 보여주는 미리보기 모드로 동작.
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxrVOakpWIr1ggAXbAzbZJ_KsRN_Grdqtsr9Ynrbp3zpeI0XmyStNo3RlT1suYrYYgC/exec';
+  const SURVEY_VERSION = '2026-1';
+  const SCALE1 = [
+    ['q2','GNA에서는 새로운 의견이나 아이디어를 편하게 제안할 수 있다.'],
+    ['q3','새로운 시도가 잘되지 않아도 잘못을 탓하기보다 배운 점을 살펴본다.'],
+    ['q4','문제가 생기면 해결 방법을 먼저 찾고 행동하는 편이다.'],
+    ['q5','맡은 업무는 문제가 해결될 때까지 책임 있게 챙기는 편이다.'],
+    ['q6','서로 의견이 달라도 솔직하게 이야기할 수 있다.'],
+    ['q7','좋지 않은 소식이나 업무상 문제도 숨기지 않고 공유하는 편이다.']
+  ];
+  const SCALE2 = [
+    ['q11','업무를 요청할 때 필요한 배경과 정보를 함께 공유하는 편이다.','소통'],
+    ['q12','잘한 점이나 개선할 점을 구체적인 행동을 중심으로 이야기하는 편이다.','피드백'],
+    ['q13','회의를 시작하기 전에 논의할 내용과 목적이 분명한 편이다.','회의'],
+    ['q14','논의가 끝나면 결정된 내용과 다음에 할 일이 명확해지는 편이다.','의사결정'],
+    ['q15','중요한 업무 내용과 결정 이유를 나중에도 확인할 수 있도록 남기는 편이다.','기록'],
+    ['q16','일이 끝난 뒤에도 처음 기대했던 결과가 나왔는지 확인하는 편이다.','결과 확인']
+  ];
+  const SINGLE = {
+    q1:['1년 미만','1년 이상~3년 미만','3년 이상','응답하지 않을게요'],
+    q8:['용기','오너십','솔직','세 가지 모두 비슷하게 잘 실천되고 있다','잘 실천되고 있는 핵심가치가 없다','판단하기 어렵다'],
+    q9:['용기','오너십','솔직','세 가지 모두 보완이 필요하다','현재 보완이 필요한 핵심가치는 없다','판단하기 어렵다'],
+    q17:['소통·정보 공유','피드백','회의','의사결정','업무 기록·문서화','업무 완료 후 결과 확인','잘 작동하는 방식이 없다','판단하기 어렵다'],
+    q18:['소통·정보 공유','피드백','회의','의사결정','업무 기록·문서화','업무 완료 후 결과 확인','개선이 필요한 부분은 없다','판단하기 어렵다']
+  };
+  const LABELS = ['전혀 그렇지 않다','그렇지 않은 편이다','보통이다','그런 편이다','매우 그렇다'];
+  const REQUIRED = ['q2','q3','q4','q5','q6','q7','q8','q9','q11','q12','q13','q14','q15','q16','q17','q18'];
+  const FREE = ['q10','q19','q20'];
+  const esc = s => s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  function scaleQ(id,text,tag){
+    const n = id.toUpperCase();
+    const seg = [1,2,3,4,5].map(v=>`<label><input type="radio" name="${id}" id="${id}_${v}" value="${v}" aria-label="${v} ${LABELS[v-1]}"><span>${v}</span></label>`).join('');
+    return `<div class="q" id="${id}">
+      <div class="q-t"><span class="q-n">${n}</span><span class="q-tag req">필수</span>${tag?`<span class="q-tag">${esc(tag)}</span>`:''}<span class="q-text">${esc(text)}</span></div>
+      <div class="scale" role="radiogroup" aria-label="${n}">
+        <div class="seg">${seg}</div>
+        <label class="na"><input type="radio" name="${id}" id="${id}_na" value="NA"><span>판단하기 어려워요</span></label>
+      </div>
+      <div class="q-err">필수 응답이에요. 1~5 중 하나를 고르거나 ‘판단하기 어려워요’를 선택해 주세요.</div>
+    </div>`;
+  }
+  document.getElementById('s1scale').innerHTML = SCALE1.map(q=>scaleQ(q[0],q[1])).join('');
+  document.getElementById('s2scale').innerHTML = SCALE2.map(q=>scaleQ(q[0],q[1],q[2])).join('');
+
+  document.querySelectorAll('[data-single]').forEach(box=>{
+    const id = box.dataset.single;
+    box.innerHTML = SINGLE[id].map((o,i)=>`<label class="opt"><input type="radio" name="${id}" id="${id}_${i}" value="${esc(o)}"><span>${esc(o)}</span></label>`).join('');
+  });
+
+  // accordion
+  function openSec(sec){ sec.classList.add('open'); sec.querySelector('.sec-h').setAttribute('aria-expanded','true'); }
+  document.querySelectorAll('.sec-h').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const sec = btn.closest('.sec');
+      const open = sec.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+
+  const form = document.getElementById('survey');
+  function val(id){ const r=form.querySelector(`input[name="${id}"]:checked`); return r?r.value:''; }
+  function free(id){ return form.querySelector('#'+id+'t').value.trim(); }
+  function update(){
+    const done = REQUIRED.filter(id=>val(id)).length;
+    document.getElementById('pDone').textContent = done;
+    document.getElementById('pBar').style.width = (done/16*100)+'%';
+    document.getElementById('c1').textContent = REQUIRED.slice(0,8).filter(val).length+'/8';
+    document.getElementById('c2').textContent = REQUIRED.slice(8).filter(val).length+'/8';
+    document.getElementById('c3').textContent = (free('q20')?1:0)+'/1';
+  }
+  form.addEventListener('change',e=>{
+    update();
+    const q = e.target.closest('.q'); if(q) q.classList.remove('err');
+  });
+  form.addEventListener('input',e=>{
+    if(e.target.tagName==='TEXTAREA'){
+      const c = form.querySelector(`[data-count="${e.target.id}"]`); if(c) c.textContent = e.target.value.length;
+      update();
+    }
+  });
+
+  // modal
+  const modal = document.getElementById('modal');
+  const submitBtn = document.getElementById('submitBtn');
+  let lastFocus = null;
+  function openModal(){
+    lastFocus = document.activeElement;
+    modal.hidden = false; modal.classList.add('show');
+    document.getElementById('modalGo').focus();
+    document.addEventListener('keydown', trap);
+  }
+  function closeModal(){
+    modal.classList.remove('show'); modal.hidden = true;
+    document.removeEventListener('keydown', trap);
+    (lastFocus || submitBtn).focus();
+  }
+  function trap(e){
+    if(e.key==='Escape'){ closeModal(); return; }
+    if(e.key!=='Tab') return;
+    const f = modal.querySelectorAll('button');
+    const first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+  document.getElementById('modalX').addEventListener('click', closeModal);
+  modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+  document.getElementById('modalWrite').addEventListener('click', ()=>{
+    closeModal();
+    openSec(document.getElementById('sec3'));
+    document.getElementById('q20d').open = true;
+    const ta = document.getElementById('q20t');
+    ta.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>ta.focus({preventScroll:true}), 300);
+  });
+  document.getElementById('modalGo').addEventListener('click', ()=>{ closeModal(); doSubmit(); });
+
+  const errBox = document.getElementById('formErr');
+  const responseId = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36)+Math.random().toString(36).slice(2));
+  async function doSubmit(){
+    const payload = {response_id: responseId, survey_version: SURVEY_VERSION, submitted_at: new Date().toISOString()};
+    ['q1',...REQUIRED,...FREE].forEach(id=>{
+      const ta = form.querySelector('#'+id+'t');
+      payload[id] = ta ? ta.value.trim() : val(id);
+    });
+    submitBtn.disabled = true;
+    const label = submitBtn.textContent;
+    submitBtn.textContent = '제출 중…';
+    errBox.classList.remove('show');
+    if(!ENDPOINT){
+      console.log('preview mode (ENDPOINT 미설정) — 저장하지 않음', payload);
+      finish(); return;
+    }
+    try{
+      const res = await fetch(ENDPOINT, {method:'POST', body: JSON.stringify(payload)});
+      const data = await res.json().catch(()=>({}));
+      if(!res.ok || !data.ok) throw new Error(data.error || ('HTTP '+res.status));
+      finish();
+    }catch(err){
+      submitBtn.disabled = false;
+      submitBtn.textContent = label;
+      errBox.textContent = '저장에 실패했어요. 네트워크를 확인한 뒤 다시 제출해 주세요. 작성한 내용은 그대로 남아 있어요.';
+      errBox.classList.add('show');
+      errBox.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  }
+  function finish(){
+    document.body.classList.add('submitted');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const missing = REQUIRED.filter(id=>!val(id));
+    const err = errBox;
+    form.querySelectorAll('.q.err').forEach(q=>q.classList.remove('err'));
+    if(missing.length){
+      missing.forEach(id=>document.getElementById(id).classList.add('err'));
+      err.textContent = `아직 답하지 않은 필수 질문이 ${missing.length}개 있어요. (${missing.map(m=>m.toUpperCase()).join(', ')})`;
+      err.classList.add('show');
+      const first = document.getElementById(missing[0]);
+      const sec = first.closest('.sec');
+      if(sec && !sec.classList.contains('open')) openSec(sec);
+      first.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    err.classList.remove('show');
+    if(FREE.every(id=>!free(id))) openModal(); else doSubmit();
+  });
+
+  update();
+})();
+</script>
+</body>
+</html>
