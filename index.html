@@ -504,7 +504,7 @@ body.submitted .done{display:block}
     }catch(err){
       submitBtn.disabled = false;
       submitBtn.textContent = label;
-      errBox.textContent = '저장에 실패했어요. 네트워크를 확인한 뒤 다시 제출해 주세요. 작성한 내용은 그대로 남아 있어요.';
+      errBox.textContent = '저장에 실패했어요. 네트워크를 확인한 뒤 다시 제출해 주세요. 작성한 내용은 그대로 남아 있어요. (' + (err && err.message ? err.message : 'unknown') + ')';
       errBox.classList.add('show');
       errBox.scrollIntoView({behavior:'smooth',block:'center'});
     }
